@@ -96,12 +96,28 @@
 	
 	<script>
 		var clickHandler=function(){
-			document.getElementById('typeHere').value = document.getElementById('typeHere').value + this.dataset.char;
+			insertTextAtCursor(document.getElementById('typeHere'), this.dataset.char);
 			console.log(this);
 		}
 		var el = document.querySelectorAll(".bn-char"); // this element contains more than 1 DOMs.
     		for(var i =0; i < el.length; i++) {
         		el[i].onclick = clickHandler;
     		}
+		
+		function insertTextAtCursor(el, text) {
+		    var val = el.value, endIndex, range, doc = el.ownerDocument;
+		    if (typeof el.selectionStart == "number"
+			    && typeof el.selectionEnd == "number") {
+			endIndex = el.selectionEnd;
+			el.value = val.slice(0, endIndex) + text + val.slice(endIndex);
+			el.selectionStart = el.selectionEnd = endIndex + text.length;
+		    } else if (doc.selection != "undefined" && doc.selection.createRange) {
+			el.focus();
+			range = doc.selection.createRange();
+			range.collapse(false);
+			range.text = text;
+			range.select();
+		    }
+		}
 	</script>
 </html>
