@@ -6,7 +6,7 @@
 	</head>
 	<body>
 		<h1>Test 001</h1>
-		<textarea id="typeHere">
+		<textarea id="typeHere" style="width:500px;">
 		</textarea>
 		
 		<table>
@@ -97,6 +97,7 @@
 	
 	<script>
 		var clickHandler=function(){
+			document.getElementById('typeHere').value = document.getElementById('typeHere').value + this.dataset.char;
 			console.log(this);
 		}
 		var el = document.querySelectorAll(".bn-char"); // this element contains more than 1 DOMs.
