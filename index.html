@@ -96,12 +96,12 @@
 	</body>
 	
 	<script>
-		document.onkeypress = function(){
+		var clickHandler=function(){
 			console.log(this);
-		};
-		
-		document.onclick = function(){
-			console.log(this);
-		};
+		}
+		var el = document.querySelectorAll(".bn-char"); // this element contains more than 1 DOMs.
+    		for(var i =0; i < el.length; i++) {
+        		el[i].onclick = clickHandler;
+    		}
 	</script>
 </html>
